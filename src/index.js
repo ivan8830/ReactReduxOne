@@ -14,14 +14,17 @@ const update = () => {
 
 subscribe(update);
 
-const bindActionCreator = (creator, dispatch) => (...args) => {//функция bindActionCreator возвращает новую функция которая будет что то возвращать
+/* const bindActionCreator = (creator, dispatch) => (...args) => {//функция bindActionCreator возвращает новую функция которая будет что то возвращать
     dispatch(creator(...args));
-}
+}  эта функция встроена в редакс, настолько популярная*/
 
 
-const incDispatch = bindActionCreators(inc, dispatch);
-const decDispatch = bindActionCreators(dec, dispatch);
-const rndDispatch = bindActionCreators(rnd, dispatch);
+const {incDispatch, decDispatch, rndDispatch} = bindActionCreators({
+    incDispatch: inc,
+    decDispatch: dec,
+    rndDispatch: rnd
+}, dispatch);
+
 
 const inc = () => {
     return {
