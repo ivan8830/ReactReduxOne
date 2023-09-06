@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, bindActionCreators } from 'redux';
 import reducer from './reducer';
 import {inc, dec, rnd} from './action';
 
@@ -14,9 +14,14 @@ const update = () => {
 
 subscribe(update);
 
-const incDispatch = () => dispatch(inc());
-const decDispatch = () => dispatch(dec());
-const rndDispatch = (value) => dispatch(rnd(value));
+const bindActionCreator = (creator, dispatch) => (...args) => {//функция bindActionCreator возвращает новую функция которая будет что то возвращать
+    dispatch(creator(...args));
+}
+
+
+const incDispatch = bindActionCreators(inc, dispatch);
+const decDispatch = bindActionCreators(dec, dispatch);
+const rndDispatch = bindActionCreators(rnd, dispatch);
 
 const inc = () => {
     return {
