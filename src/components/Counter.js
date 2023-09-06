@@ -15,9 +15,6 @@ import * as actions from "../action";
 } */
 
 class Counter extends Component {
-
-    
-
     render() {
         const {counter, inc, dec, rnd} = this.props;
         return(
